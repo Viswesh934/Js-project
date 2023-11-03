@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pocket Notes</title>
+  <style>
+    /* CSS for the default (disabled) state */
+
+.popup-container.focus-mode {
+    opacity: 0.5; 
+}
+.popup-container.focus-mode textarea {
+    color: red;
+}
+
+  </style>
+</head>
+<body>
+  <div class="popup-container">
+    <h1>Pocket Notes</h1>
+    <input type="text" id="noteName" placeholder="Note Name">
+    <textarea id="noteInput" rows="10" placeholder="Write your notes here"></textarea>
+    <button id="saveButton">Save and Download</button>
+    <button id="addNoteButton">Clear Notes</button>
+    <button id="focusModeButton">Enable Focus Mode</button>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
