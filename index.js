@@ -43,4 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
   });
+
+  //Random motivational quote generator
   
+  fetch('https://api.quotable.io/random?maxLength=100')
+  .then(data => data.json())
+  .then(quoteData => {
+      const quoteText = quoteData.content;
+      const quote = document.getElementById('quote')
+
+      quote.innerHTML = quoteText;
+  })

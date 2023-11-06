@@ -1,0 +1,30 @@
+:root {
+    --textcolor: edf6f9;
+    --tilecolor: #83cebe;
+    --bgcolor: #006D77;
+}
+
+body{
+    width: 200px;
+    height: 150px;
+    background-color: var(--bgcolor);
+    color: white;
+    text-align: center;
+}
+
+#quote{
+    margin: 10px;
+    padding: 5px;
+    background-color: var(--tilecolor);
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 1px solid var(--textcolor);
+    border-radius: 5px;
+
+}
+
+#saveButton{
+    padding: 5px;
+    border-radius: 5px;
+    margin: 7px  0px ;
+}
