@@ -23,8 +23,8 @@ body{
 
 }
 
-#saveButton{
+button{
     padding: 5px;
     border-radius: 5px;
-    margin: 7px  0px ;
+    margin: 3px  0px ;
 }
