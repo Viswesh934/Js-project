@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
    // save notes to local storage
    
+   if (localStorage.getItem('noteName')) {
+    noteNameInput.value = localStorage.getItem('noteName');
+  }
+
+  if (localStorage.getItem('noteText')) {
+    noteInput.value = localStorage.getItem('noteText');
+  }
 
   saveButton.addEventListener("click", function () {
       unsavedChanges = false;
@@ -25,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
       a.click();
 
       URL.revokeObjectURL(url);
+      localStorage.setItem('noteName', noteName);
+      localStorage.setItem('noteText', noteText);
   });
 
 
@@ -38,9 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       quote.innerHTML = quoteText;
       setTimeout(() => {
-            quote.innerHTML = '';
+            quote.remove();
         }, 10000);
-        quote.style.backgroundColor = '#006D77';
   })
   addNoteButton.addEventListener("click", function () {
       // Get the values from the input fields
