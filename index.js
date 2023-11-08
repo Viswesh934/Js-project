@@ -4,13 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveButton = document.getElementById("saveButton");
   const addNoteButton = document.getElementById("addNoteButton");
   const focusModeButton = document.getElementById("focusModeButton");
+  const shareButton = document.getElementById("shareButton");
+  const zin= document.getElementById("zoom-in");
+  const zout= document.getElementById("zoom-out");
 
-  let unsavedChanges = false;
-
-  chrome.storage.sync.get(["noteName", "noteText"], function (result) {
-      noteNameInput.value = result.noteName || "";
-      noteInput.value = result.noteText || "";
-  });
+   // save notes to local storage
+   
 
   saveButton.addEventListener("click", function () {
       unsavedChanges = false;
@@ -28,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       URL.revokeObjectURL(url);
   });
 
+
   //Random motivational quote generator
   
   fetch('https://api.quotable.io/random?maxLength=100')
@@ -37,6 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const quote = document.getElementById('quote')
 
       quote.innerHTML = quoteText;
+      setTimeout(() => {
+            quote.innerHTML = '';
+        }, 10000);
+        quote.style.backgroundColor = '#006D77';
   })
   addNoteButton.addEventListener("click", function () {
       // Get the values from the input fields
@@ -61,4 +65,61 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+//Share the notes
+shareButton.addEventListener("click", function () {
+    const noteName = noteNameInput.value || "Untitled";
+    const noteText = noteInput.value;
+    const combinedText = `Note Name: ${noteName}\n\n${noteText}`;
+  
+    if (navigator.share) {
+      navigator.share({
+        title: noteName,
+        text: combinedText,
+      })
+      .then(() => console.log('Sharing successful'))
+      .catch(console.error);
+    } else {
+      // Fallback to copying the note text to clipboard
+      navigator.clipboard.writeText(combinedText);
+      alert('Note copied to clipboard.');
+    }
+  });
+  //Zoom in and out
+    zin.addEventListener("click", function () {
+        document.body.style.zoom = "125%";
+    });
+    zout.addEventListener("click", function () {
+        document.body.style.zoom = "100%";
+    });
+
+    //Drag search
+    let selectedText = "";
+let dragStartX = 0;
+let isDragging = false;
+
+document.addEventListener("mouseup", function () {
+  selectedText = window.getSelection().toString().trim();
+});
+
+document.addEventListener("mousedown", function (e) {
+  dragStartX = e.clientX;
+  isDragging = false;
+});
+
+document.addEventListener("mousemove", function (e) {
+  if (isDragging) {
+    return; 
+  }
+
+  const dragThreshold = 100; 
+
+  if (selectedText && Math.abs(e.clientX - dragStartX) >= dragThreshold) {
+    const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(selectedText)}`;
+    window.open(searchUrl, "_blank");
+    isDragging = true; 
+  }
+});
+
+
+  
 });
