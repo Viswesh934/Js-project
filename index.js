@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
       URL.revokeObjectURL(url);
   });
 
+  //Random motivational quote generator
+  
+  fetch('https://api.quotable.io/random?maxLength=100')
+  .then(data => data.json())
+  .then(quoteData => {
+      const quoteText = quoteData.content;
+      const quote = document.getElementById('quote')
+
+      quote.innerHTML = quoteText;
+  })
   addNoteButton.addEventListener("click", function () {
       // Get the values from the input fields
       const noteName = noteNameInput.value || "Untitled";
