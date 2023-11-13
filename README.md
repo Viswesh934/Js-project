@@ -50,3 +50,5 @@ Once the extension is installed, follow these steps to start using it:
      
 8. **Quote Tile** :
    - Clicking the extension leads to a pop, consisting a motivational quote which lasts for few seconds.
+   - ![image](https://github.com/Viswesh934/Js-project/assets/96040945/eeec73f7-3708-43f2-8604-ae381d77ab69)
+
